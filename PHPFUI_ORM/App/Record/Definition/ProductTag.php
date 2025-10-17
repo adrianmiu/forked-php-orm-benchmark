@@ -7,24 +7,36 @@ namespace App\Record\Definition;
  *
  * @property ?int $position MySQL type integer
  * @property ?int $product_id MySQL type integer
+ * @property \App\Record\Product $product related record
  * @property int $product_tag_id MySQL type integer
+ * @property \App\Record\ProductTag $product_tag related record
  * @property ?int $tag_id MySQL type integer
+ * @property \App\Record\Tag $tag related record
  */
 abstract class ProductTag extends \PHPFUI\ORM\Record
 	{
 	protected static bool $autoIncrement = true;
 
-	/** @var array<string, array<mixed>> */
-	protected static array $fields = [
-		// MYSQL_TYPE, PHP_TYPE, LENGTH, ALLOWS_NULL, DEFAULT
-		'position' => ['integer', 'int', 0, true, ],
-		'product_id' => ['integer', 'int', 0, true, ],
-		'product_tag_id' => ['integer', 'int', 0, false, ],
-		'tag_id' => ['integer', 'int', 0, true, ],
-	];
+	/** @var array<string, \PHPFUI\ORM\FieldDefinition> */
+	protected static array $fields = [];
 
 	/** @var array<string> */
 	protected static array $primaryKeys = ['product_tag_id', ];
 
 	protected static string $table = 'product_tag';
+
+	public function initFieldDefinitions() : static
+		{
+		if (! count(static::$fields))
+			{
+			static::$fields = [
+			'position' => new \PHPFUI\ORM\FieldDefinition('integer', 'int', 0, true, ),
+			'product_id' => new \PHPFUI\ORM\FieldDefinition('integer', 'int', 0, true, ),
+			'product_tag_id' => new \PHPFUI\ORM\FieldDefinition('integer', 'int', 0, false, ),
+			'tag_id' => new \PHPFUI\ORM\FieldDefinition('integer', 'int', 0, true, ),
+		];
+			}
+
+		return $this;
+		}
 	}

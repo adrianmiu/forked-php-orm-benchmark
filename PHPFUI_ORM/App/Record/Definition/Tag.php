@@ -7,20 +7,30 @@ namespace App\Record\Definition;
  *
  * @property string $name MySQL type varchar(128)
  * @property int $tag_id MySQL type integer
+ * @property \App\Record\Tag $tag related record
  */
 abstract class Tag extends \PHPFUI\ORM\Record
 	{
 	protected static bool $autoIncrement = true;
 
-	/** @var array<string, array<mixed>> */
-	protected static array $fields = [
-		// MYSQL_TYPE, PHP_TYPE, LENGTH, ALLOWS_NULL, DEFAULT
-		'name' => ['varchar(128)', 'string', 128, false, ],
-		'tag_id' => ['integer', 'int', 0, false, ],
-	];
+	/** @var array<string, \PHPFUI\ORM\FieldDefinition> */
+	protected static array $fields = [];
 
 	/** @var array<string> */
 	protected static array $primaryKeys = ['tag_id', ];
 
 	protected static string $table = 'tag';
+
+	public function initFieldDefinitions() : static
+		{
+		if (! count(static::$fields))
+			{
+			static::$fields = [
+			'name' => new \PHPFUI\ORM\FieldDefinition('varchar(128)', 'string', 128, false, ),
+			'tag_id' => new \PHPFUI\ORM\FieldDefinition('integer', 'int', 0, false, ),
+		];
+			}
+
+		return $this;
+		}
 	}

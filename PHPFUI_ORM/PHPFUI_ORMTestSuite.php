@@ -65,6 +65,27 @@ class PHPFUI_ORMTestSuite extends AbstractTestSuite
 		$migration = new \Migration();
 		$migration->down();
 		$migration->up();
+
+// This code generates the models.  It is not used for benchmarks, but should be run when upgrading to a new version of PHPFUI/ORM
+
+//	 	$generator = new \PHPFUI\ORM\Tool\Generate\CRUD();
+//
+//	 	$tables = \PHPFUI\ORM::getTables();
+//
+//	 	if (! \count($tables))
+//	 		{
+//	 		echo "No tables found. Check your database configuration settings.\n";
+//
+//	 		exit;
+//	 		}
+//
+//	 	foreach ($tables as $table)
+//	 		{
+//	 		if ($generator->generate($table))
+//	 			{
+//	 			echo "{$table}\n";
+//	 			}
+//	 		}
 		}
 
 	public function initialize()
