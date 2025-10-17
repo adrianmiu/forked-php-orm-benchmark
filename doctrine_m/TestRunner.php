@@ -1,4 +1,4 @@
 <?php
 
-passthru('php '.dirname(__FILE__).'/TestRunnerDoctrineMTestSuite.php');
-passthru('php '.dirname(__FILE__).'/TestRunnerDoctrineMWithCacheTestSuite.php');
+passthru('php '.__DIR__.'/TestRunnerDoctrineMTestSuite.php');
+passthru('php '.__DIR__.'/TestRunnerDoctrineMWithCacheTestSuite.php');

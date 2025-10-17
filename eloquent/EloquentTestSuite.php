@@ -1,6 +1,6 @@
 <?php
 
-require_once dirname(__FILE__) . '/../AbstractTestSuite.php';
+require_once __DIR__ . '/../AbstractTestSuite.php';
 
 class EloquentTestSuite extends AbstractTestSuite
 {

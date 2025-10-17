@@ -1,7 +1,0 @@
-<?php return [
-    'pdo' => ['dsn', 'username', 'password'],
-    'directory' => getcwd() . '/src',
-    'namespace' => 'DataSource',
-    'transform' => null,
-    'templates' => null,
-];

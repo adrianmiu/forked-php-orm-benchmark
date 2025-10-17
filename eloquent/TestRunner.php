@@ -1,4 +1,4 @@
 <?php
 
-passthru('php '.dirname(__FILE__).'/TestRunnerEloquentTestSuite.php');
-passthru('php '.dirname(__FILE__).'/TestRunnerEloquentWithoutEventTestSuite.php');
+passthru('php '.__DIR__.'/TestRunnerEloquentTestSuite.php');
+passthru('php '.__DIR__.'/TestRunnerEloquentWithoutEventTestSuite.php');

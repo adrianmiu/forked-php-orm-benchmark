@@ -1,6 +1,6 @@
 <?php
 
-require_once dirname(__FILE__) . '/DoctrineMTestSuite.php';
+require_once __DIR__ . '/DoctrineMTestSuite.php';
 
 class DoctrineMWithCacheTestSuite extends DoctrineMTestSuite
 {

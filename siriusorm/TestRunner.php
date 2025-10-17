@@ -1,6 +1,6 @@
 <?php
 
-require dirname(__FILE__) . '/SiriusOrmTestSuite.php';
+require __DIR__ . '/SiriusOrmTestSuite.php';
 
 $time = microtime(true);
 $memory = memory_get_usage();

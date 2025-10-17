@@ -1,6 +1,6 @@
 <?php
 
-require_once dirname(__FILE__) . '/EloquentTestSuite.php';
+require_once __DIR__ . '/EloquentTestSuite.php';
 
 class EloquentWithoutEventTestSuite extends EloquentTestSuite
 {

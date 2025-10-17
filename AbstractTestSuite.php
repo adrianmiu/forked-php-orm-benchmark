@@ -1,6 +1,6 @@
 <?php
 
-require_once dirname(__FILE__) . '/sfTimer.php';
+require_once __DIR__ . '/sfTimer.php';
 
 abstract class AbstractTestSuite
 {
@@ -127,7 +127,7 @@ abstract class AbstractTestSuite
 
     public function assertNotNull($actual, $message = null) {
         if (null == $actual) {
-            throw new Exception($message ?? sprintf('%s is null', $actual));
+            throw new Exception($message ?? sprintf('%s is null or zero', $actual));
         }
     }
 }

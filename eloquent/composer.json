@@ -1,7 +1,7 @@
 {
     "require": {
-        "illuminate/database": "~6.4",
-        "illuminate/contracts": "~6.4",
-        "illuminate/events": "~6.4"
+        "illuminate/database": "^10.0",
+        "illuminate/contracts": "^10.0",
+        "illuminate/events": "^10.0"
     }
 }

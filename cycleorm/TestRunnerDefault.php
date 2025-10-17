@@ -1,6 +1,6 @@
 <?php
 
-require dirname(__FILE__) . '/CycleOrmTestSuite.php';
+require __DIR__ . '/CycleOrmTestSuite.php';
 
 $time = microtime(true);
 $memory = memory_get_usage();

@@ -1,6 +1,6 @@
 <?php
 
-require dirname(__FILE__) . '/EloquentTestSuite.php';
+require __DIR__ . '/EloquentTestSuite.php';
 
 $time = microtime(true);
 $memory = memory_get_usage(true);

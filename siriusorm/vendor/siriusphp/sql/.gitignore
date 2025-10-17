@@ -1,7 +1,0 @@
-vendor/
-php-cs-fixer.phar
-phpcbf.phar
-phpcs.phar
-build
-couscous.phar
-docs/.couscous/

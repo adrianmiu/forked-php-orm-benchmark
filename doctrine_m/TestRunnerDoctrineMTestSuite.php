@@ -1,6 +1,6 @@
 <?php
 
-  require dirname(__FILE__) . '/DoctrineMTestSuite.php';
+  require __DIR__ . '/DoctrineMTestSuite.php';
   $time = microtime(true);
   $memory = memory_get_usage(true);
   $test = new DoctrineMTestSuite();

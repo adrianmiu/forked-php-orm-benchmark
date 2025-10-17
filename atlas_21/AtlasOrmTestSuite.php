@@ -8,7 +8,7 @@ use Product\Product;
 use ProductsTag\ProductsTag;
 use Tag\Tag;
 
-require_once dirname(__FILE__) . '/../AbstractTestSuite.php';
+require_once __DIR__ . '/../AbstractTestSuite.php';
 
 /**
  * This test suite just demonstrates the baseline performance without any kind of ORM
@@ -21,6 +21,8 @@ class AtlasOrmTestSuite extends AbstractTestSuite
      * @var \Atlas\Orm\Atlas
      */
     private $atlas;
+
+	private $product;
 
     function initialize()
     {
