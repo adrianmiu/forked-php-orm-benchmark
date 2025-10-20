@@ -53,20 +53,20 @@ abstract class ProductMapperBase extends Mapper
 
         $this->addRelation('tags', [
             'type' => 'many_to_many',
+            'native_key' => 'id',
+            'foreign_mapper' => 'tags',
             'foreign_key' => 'id',
+            'load_strategy' => 'lazy',
             'pivot_table' => 'products_tags',
             'pivot_native_column' => 'product_id',
             'pivot_foreign_column' => 'tag_id',
-            'native_key' => 'id',
-            'foreign_mapper' => 'tags',
-            'load_strategy' => 'lazy',
         ]);
 
         $this->addRelation('category', [
             'type' => 'many_to_one',
-            'foreign_key' => 'id',
             'native_key' => 'category_id',
             'foreign_mapper' => 'categories',
+            'foreign_key' => 'id',
             'load_strategy' => 'lazy',
         ]);
     }
