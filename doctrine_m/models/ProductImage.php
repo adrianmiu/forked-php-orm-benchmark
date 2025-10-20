@@ -1,8 +1,7 @@
 <?php
 
-/**
- * @Entity
- */
+#[\Doctrine\ORM\Mapping\Entity]
+#[\Doctrine\ORM\Mapping\Table(name: 'product_image')]
 class ProductImage extends Image
 {
     /** MANY-TO-ONE BIDIRECTIONAL, OWNING SIDE

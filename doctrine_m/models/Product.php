@@ -1,30 +1,28 @@
 <?php
 
-/** @Entity */
+#[\Doctrine\ORM\Mapping\Entity]
+#[\Doctrine\ORM\Mapping\Table(name: 'product')]
 class Product extends BaseModel
 {
-    /** @Id @Column(type="integer") @GeneratedValue */
+    #[\Doctrine\ORM\Mapping\Id]
+    #[\Doctrine\ORM\Mapping\GeneratedValue(strategy: 'AUTO')]
+    #[\Doctrine\ORM\Mapping\Column(type: 'integer')]
     public $id;
-    /** @Column */
+    #[\Doctrine\ORM\Mapping\Column]
     public $name;
-    /** @Column(length=24) */
+    #[\Doctrine\ORM\Mapping\Column(length: 24)]
     public $sku;
-    /** @Column(type="decimal") */
+    #[\Doctrine\ORM\Mapping\Column(type: 'float')]
     public $price;
-    /** @Column(type="integer") */
+    #[\Doctrine\ORM\Mapping\Column(type: 'integer', nullable: true)]
     public $category_id;
-    /** @ManyToOne(targetEntity="Category",cascade={"persist"},fetch="EAGER") */
+    #[\Doctrine\ORM\Mapping\JoinColumn(name: 'category_id', referencedColumnName: 'id')]
+    #[\Doctrine\ORM\Mapping\ManyToOne(targetEntity: Category::class, cascade: ["persist"])]
     public $category;
-    /**
-     * @ManyToMany(targetEntity="Tag",cascade={"persist"},fetch="EAGER")
-     * @JoinTable(name="products_tags")
-     */
+    #[\Doctrine\ORM\Mapping\ManyToMany(targetEntity: Tag::class,cascade: ["persist"])]
+    #[\Doctrine\ORM\Mapping\JoinTable(name: "products_tags")]
     public $tags;
-    /** ONE-TO-MANY BIDIRECTIONAL, INVERSE SIDE
-     * @var Collection
-     * @ORM\OneToMany(targetEntity="ProductImage", mappedBy="product",cascade={"persist"},fetch="EAGER")
-     * @ORM\JoinColumn(name="id", referencedColumnName="imageable_id", nullable=true)
-     */
+    #[\Doctrine\ORM\Mapping\OneToMany(targetEntity: ProductImage::class, mappedBy: "product", cascade: ["persist"])]
+    #[\Doctrine\ORM\Mapping\JoinColum(name: "id", referencedColumnName: "imageable_id", nullable: true)]
     public $images;
-
 }
