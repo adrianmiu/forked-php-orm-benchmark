@@ -1,34 +1,32 @@
 <?php
 
+require_once "vendor/autoload.php";
 require_once __DIR__ . '/../AbstractTestSuite.php';
 
 class DoctrineMTestSuite extends AbstractTestSuite
 {
-    /**
-     * @var \Doctrine\ORM\EntityManager
-     */
-    protected $em = null;
+    protected ?\Doctrine\ORM\EntityManager $em = null;
     private static $classes = null;
+	private Product $product;
 
     public function initialize()
     {
-        require_once "vendor/autoload.php";
+        $queryCache = new \Symfony\Component\Cache\Adapter\ArrayAdapter();
+        $metadataCache = new \Symfony\Component\Cache\Adapter\ArrayAdapter();
 
-        $cache  = new \Doctrine\Common\Cache\ArrayCache;
-        $config = new Doctrine\ORM\Configuration;
-        $config->setMetadataCacheImpl($cache);
-        $driverImpl = $config->newDefaultAnnotationDriver(__DIR__ . '/models');
-        $config->setMetadataDriverImpl($driverImpl);
-        $config->setQueryCacheImpl($cache);
-        $config->setProxyDir(__DIR__ . '/proxies');
-        $config->setProxyNamespace('Proxies');
-        $config->setAutoGenerateProxyClasses(true); // no code generation in production
+        $doctrineConfig = new \Doctrine\ORM\Configuration();
+        $doctrineConfig->setMetadataCache($metadataCache);
+        $entityPath = __DIR__ . '/models';
+        $driverImpl = new \Doctrine\ORM\Mapping\Driver\AttributeDriver([$entityPath], true);
+        $doctrineConfig->setMetadataDriverImpl($driverImpl);
+        $doctrineConfig->setQueryCache($queryCache);
+        $doctrineConfig->setProxyDir(__DIR__ . '/proxies');
+        $doctrineConfig->setProxyNamespace('Proxies');
+        $doctrineConfig->setAutoGenerateProxyClasses(true);
 
-        $dbParams = array('driver' => 'pdo_sqlite', 'memory' => true);
-//      unlink(__DIR__ . '/sqlite');
-//      $dbParams = array('driver' => 'pdo_sqlite', 'path' => __DIR__ . '/sqlite');
+        $dbParams = new \Doctrine\DBAL\Connection(['driver' => 'pdo_sqlite', 'memory' => true], new \Doctrine\DBAL\Driver\SQLite3\Driver());
 
-        $this->em = Doctrine\ORM\EntityManager::create($dbParams, $config);
+        $this->em = new \Doctrine\ORM\EntityManager($dbParams, $doctrineConfig);
 
         if ( ! self::$classes) {
             self::$classes = $this->em->getMetadataFactory()->getAllMetadata();

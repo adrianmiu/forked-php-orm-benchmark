@@ -8,7 +8,7 @@ use Sirius\Orm\Entity\ClassMethodsEntity;
 
 abstract class TagBase extends ClassMethodsEntity
 {
-    public function __construct(array $attributes = [], string $state = null)
+    public function __construct(array $attributes = [], ?string $state = null)
     {
         parent::__construct($attributes, $state);
     }

@@ -4,10 +4,9 @@ require_once __DIR__ . '/sfTimer.php';
 
 abstract class AbstractTestSuite
 {
-    /** @var PDO $con */
     protected $con;
 
-    protected $products = array();
+    protected array $products = [];
 
     const NB_TEST = 500;
 
